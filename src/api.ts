@@ -28,7 +28,34 @@ export const api={
  copilotHistory:(id:string)=>request<any[]>(`/cases/${encodeURIComponent(id)}/copilot/history`),
  copilot:(id:string,message:string)=>request<{answer:string}>(`/cases/${encodeURIComponent(id)}/copilot`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message})}),
  osint:(id:string,query:string)=>request<any>(`/cases/${encodeURIComponent(id)}/osint/search`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query})}),
+ 
  osintHistory:(id:string)=>request<any[]>(`/cases/${encodeURIComponent(id)}/osint`),
+ geminiMedia:(id:string)=>request<any>(
+  `/cases/${encodeURIComponent(id)}/gemini-media`,
+  {method:'POST'}
+),
+
+caseReview:(id:string)=>request<any[]>(
+  `/cases/${encodeURIComponent(id)}/review`
+),
+
+caseReviewSubmit:(id:string,body:any)=>request<any>(
+  `/cases/${encodeURIComponent(id)}/review`,
+  {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  }
+),
+
+timeline:(id:string)=>request<any[]>(
+  `/cases/${encodeURIComponent(id)}/timeline`
+),
+
+aiOsint:(id:string)=>request<any>(
+  `/cases/${encodeURIComponent(id)}/ai-osint`,
+  {method:'POST'}
+),
  evidenceFile:(caseId:string,evidenceId:string)=>`${API}/cases/${encodeURIComponent(caseId)}/evidence/${encodeURIComponent(evidenceId)}/file`,
  tracePropagation:(id:string)=>request<any>(`/cases/${encodeURIComponent(id)}/propagation/trace`,{method:'POST'}),
  audit:(id:string)=>request<any[]>(`/cases/${encodeURIComponent(id)}/audit`),
