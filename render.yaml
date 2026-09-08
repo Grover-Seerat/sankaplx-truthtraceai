@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: truthtrace-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: CORS_ORIGINS
+        sync: false
+      - key: DEMO_ADMIN_ID
+        value: admin@truthtrace.local
+      - key: DEMO_ADMIN_PASSWORD
+        sync: false
+      - key: DEMO_INVESTIGATOR_ID
+        value: investigator@truthtrace.local
+      - key: DEMO_INVESTIGATOR_PASSWORD
+        sync: false
+      - key: DEEPFAKE_MODEL
+        value: buildborderless/CommunityForensics-DeepfakeDet-ViT
+      - key: DINO_MODEL
+        value: facebook/dinov2-base
+      - key: CLIP_MODEL
+        value: openai/clip-vit-base-patch32
+      - key: ENABLE_SECOND_DETECTOR
+        value: "true"
+      - key: SECOND_DETECTOR_MODEL
+        value: NPR-DeepfakeDetection
+      - key: NPR_WEIGHTS_REPO
+        value: siddharthksah/deepsafe-weights
+      - key: NPR_WEIGHTS_FILE
+        value: npr_deepfakedetection/NPR.pth
+      - key: FORENSIC_VIEWS
+        value: "5"

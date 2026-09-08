@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+COPY requirements-core.txt requirements-ai.txt requirements-optional.txt ./
+RUN pip install --no-cache-dir -r requirements-core.txt -r requirements-ai.txt -r requirements-optional.txt
+COPY app ./app
+COPY MODELS.md README.md ./
+RUN mkdir -p data/uploads data/reports
+EXPOSE 8000
+CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]

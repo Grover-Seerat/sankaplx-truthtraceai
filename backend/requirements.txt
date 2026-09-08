@@ -1,0 +1,4 @@
+# Deployment baseline. Optional forensic integrations are installed separately.
+-r requirements-core.txt
+-r requirements-ai.txt
+# Add requirements-optional.txt only for the full forensic/admin image.

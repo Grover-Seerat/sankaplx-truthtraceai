@@ -1,0 +1,4 @@
+# PaddleOCR 3.x requires PaddlePaddle >=3.0.
+# On Windows/CPU, install the matching PaddlePaddle wheel from the official index first,
+# then install PaddleOCR. See backend/README.md.
+paddleocr>=3.0.0
