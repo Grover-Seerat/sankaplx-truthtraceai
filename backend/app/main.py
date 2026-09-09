@@ -13,7 +13,7 @@ from .services.investigation import grounded_chat, osint_search
 
 BASE=Path(__file__).resolve().parents[1]; UPLOAD=Path(os.getenv('UPLOAD_DIR',BASE/'data/uploads')); REPORT=Path(os.getenv('REPORT_DIR',BASE/'data/reports')); UPLOAD.mkdir(parents=True,exist_ok=True); REPORT.mkdir(parents=True,exist_ok=True)
 app=FastAPI(title='TruthTrace Forensic API',version='1.0.0')
-orig=[x.strip() for x in os.getenv('CORS_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(',') if x.strip()]; app.add_middleware(CORSMiddleware,allow_origins=orig,allow_credentials=True,allow_methods=['*'],allow_headers=['*'])
+orig=[x.strip() for x in os.getenv('CORS_ORIGINS', 'https://sankaplx-truthtraceai-frontend.onrender.com','http://localhost:5173,http://127.0.0.1:5173').split(',') if x.strip()]; app.add_middleware(CORSMiddleware,allow_origins=orig,allow_credentials=True,allow_methods=['*'],allow_headers=['*'])
 
 class CaseIn(BaseModel):
     investigationType:str; claim:str; platform:str=''; date:str=''; location:str=''; withMedia:bool=False; notes:str=''; referenceUrl:str=''; priority:str='HIGH'
